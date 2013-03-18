@@ -8,8 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>Documentation Driven Web Testing</name>
-
-	<url>http://github.com/bhulliger</url>
+	<url>https://github.com/bhulliger</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,13 +16,25 @@
 
 	<developers>
 		<developer>
-			<id>bhulliger</id>
 			<name>Brigitte Hulliger</name>
 			<email>brigitte.hulliger@gmail.com</email>
+			<url>https://github.com/bhulliger</url>
 		</developer>
 	</developers>
 
+	<scm>
+		<connection>scm:git:http://github.com/bhulliger/at-doclet.git</connection>
+		<developerConnection>scm:git:http://github.com/bhulliger/at-doclet.git</developerConnection>
+		<url>https://github.com/bhulliger/at-doclet</url>
+	</scm>
 
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 3</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<build>
 		<plugins>
