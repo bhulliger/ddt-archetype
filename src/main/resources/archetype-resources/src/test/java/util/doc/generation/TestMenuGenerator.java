@@ -1,6 +1,5 @@
 package ${groupId}.util.doc.generation;
 
-// TODO: replace package
 import static ${groupId}.util.doc.generation.SiteDescriptorUtils.TEST_CASES_PLACEHOLDER;
 
 import java.io.FileNotFoundException;
@@ -23,7 +22,6 @@ public class TestMenuGenerator {
 	 * @throws IOException
 	 */
 	public static void main(final String[] args) throws FileNotFoundException, IOException {
-		// TODO: replace package with ${groupId}
 		final Reflections sources = new Reflections("${groupId}", new MethodAnnotationsScanner());
 
 		final ArrayList<Method> testCaseMethods = new ArrayList<>(sources.getMethodsAnnotatedWith(TestCase.class));

@@ -39,7 +39,6 @@ public class MenuGenerator {
 	 * @throws IOException
 	 */
 	public static void main(final String[] args) throws FileNotFoundException, IOException {
-		// TODO: replace
 		final Reflections sources = new Reflections("${groupId}");
 
 		final List<Class<?>> useCaseClasses = new ArrayList<>(sources.getTypesAnnotatedWith(UseCase.class));
@@ -53,6 +52,7 @@ public class MenuGenerator {
 
 			final String link = SiteDescriptorUtils.generateMenuLink(
 					"generated/" + SiteDescriptorUtils.evaluatePath(usecaseClass), usecase.id(), usecase.name(), ": ");
+			
 			useCasesLinks.append(link);
 		}
 
