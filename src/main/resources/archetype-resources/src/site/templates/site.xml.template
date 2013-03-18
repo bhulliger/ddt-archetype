@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="${artifactId}" xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+  
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.0</version>
+  </skin>
+  
+  <custom>
+    <fluidoSkin>
+      <topBarEnabled>true</topBarEnabled>
+      <sideBarEnabled>true</sideBarEnabled>
+    </fluidoSkin>
+  </custom>
+  
+  <publishDate position="right"/>
+  
+  <version position="right"/>
+  
+  <poweredBy>
+    <logo name="Maven" href="http://maven.apache.org/"
+          img="http://maven.apache.org/images/logos/maven-feather.png"/>
+  </poweredBy>
+  
+  <body>
+    
+    <menu name="Documentation">
+     	${PAGES}
+      	${USE_CASES}
+      	${TEST_CASES}
+    </menu>
+    
+    <menu name="Reports">
+    	<item name="Test Reports" href="testreport.html" />
+    </menu>
+    
+    <menu ref="reports" />
+  </body>
+</project>
