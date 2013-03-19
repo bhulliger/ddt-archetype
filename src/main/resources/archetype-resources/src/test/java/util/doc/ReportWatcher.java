@@ -21,31 +21,35 @@ import ${groupId}.util.report.TestResultSaver;
 public class ReportWatcher extends TestWatcher {
 
 	/**
-	 * FIXME: By default, the current date is used as an identification of the release.
-	 * If you have a Build date or similar, you may want to use that.
+	 * FIXME: By default, the current date is used as an identification of the
+	 * release. If you have a Build date or similar, you may want to use that.
 	 */
-	private static final String currentRelease = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+	private static final String currentRelease = new SimpleDateFormat(
+			"dd.MM.yyyy").format(new Date()); //$NON-NLS-1$
 
 	/**
 	 * @see org.junit.rules.TestWatcher#succeeded(org.junit.runner.Description)
 	 */
 	@Override
 	protected void succeeded(final Description description) {
-		if ("on".equals(TestPropertyUtils.getPropertyValue("reports"))) {
-			TestResultSaver.getInstance().succeeded(currentRelease, description.getAnnotation(TestCase.class).id());
+		if ("on".equals(TestPropertyUtils.getPropertyValue("reports"))) { //$NON-NLS-1$//$NON-NLS-2$
+			TestResultSaver.getInstance().succeeded(currentRelease,
+					description.getAnnotation(TestCase.class).id());
 		}
 		super.succeeded(description);
 	}
 
 	/**
-	 * @see org.junit.rules.TestWatcher#failed(java.lang.Throwable, org.junit.runner.Description)
+	 * @see org.junit.rules.TestWatcher#failed(java.lang.Throwable,
+	 *      org.junit.runner.Description)
 	 */
 	@Override
 	protected void failed(final Throwable e, final Description description) {
-		if ("on".equals(TestPropertyUtils.getPropertyValue("reports"))) {
-			TestResultSaver.getInstance().failed(currentRelease, description.getAnnotation(TestCase.class).id());
+		if ("on".equals(TestPropertyUtils.getPropertyValue("reports"))) { //$NON-NLS-1$//$NON-NLS-2$
+			TestResultSaver.getInstance().failed(currentRelease,
+					description.getAnnotation(TestCase.class).id());
 		}
 		super.failed(e, description);
 	}
-
+	
 }

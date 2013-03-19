@@ -71,7 +71,7 @@ public abstract class AbstractPage {
 			new Select(dropDownElement).selectByVisibleText(visibleText);
 		}
 		catch (final Exception e) {
-			log.debug("[" + visibleText + "] could not be selected in the dropdown.", e);
+			log.debug("[" + visibleText + "] could not be selected in the dropdown.", e);  //$NON-NLS-1$//$NON-NLS-2$
 		}
 	}
 
@@ -89,7 +89,7 @@ public abstract class AbstractPage {
 			new Select(dropDownElement).selectByIndex(index);
 		}
 		catch (final Exception e) {
-			log.debug("[index " + index + "] could not be selected in the dropdown.", e);
+			log.debug("[index " + index + "] could not be selected in the dropdown.", e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -107,7 +107,7 @@ public abstract class AbstractPage {
 			new Select(dropDownElement).selectByValue(value);
 		}
 		catch (final Exception e) {
-			log.debug("[value " + value + "] could not be selected in the dropdown.", e);
+			log.debug("[value " + value + "] could not be selected in the dropdown.", e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -8,11 +8,11 @@ package ${groupId}.util.report;
  */
 public enum TestResult {
 
-	SUCCEEDED("OK"),
+	SUCCEEDED("OK"), //$NON-NLS-1$
 
-	FAILED("NOK"),
+	FAILED("NOK"), //$NON-NLS-1$
 
-	NOT_AVAILABLE("n/a");
+	NOT_AVAILABLE("n/a"); //$NON-NLS-1$
 
 	private String value;
 
@@ -26,7 +26,7 @@ public enum TestResult {
 				return testResult;
 			}
 		}
-		throw new IllegalArgumentException("unsupported value: " + value);
+		throw new IllegalArgumentException("unsupported value: " + value); //$NON-NLS-1$
 	}
 
 	public String getValue() {

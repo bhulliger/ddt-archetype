@@ -26,13 +26,17 @@ public class ScreenshotAspect {
 	}
 
 	@After("submitOrClick()")
-	public void submitOrClickAfter(final JoinPoint thisJoinPoint) throws Throwable {
-		((Screenshotable) thisJoinPoint.getThis()).takeScreenshot(this.getFilePath());
+	public void submitOrClickAfter(final JoinPoint thisJoinPoint)
+			throws Throwable {
+		((Screenshotable) thisJoinPoint.getThis()).takeScreenshot(this
+				.getFilePath());
 	}
 
 	@Before("submitOrClick()")
-	public void submitOrClickBefore(final JoinPoint thisJoinPoint) throws Throwable {
-		((Screenshotable) thisJoinPoint.getThis()).takeScreenshot(this.getFilePath());
+	public void submitOrClickBefore(final JoinPoint thisJoinPoint)
+			throws Throwable {
+		((Screenshotable) thisJoinPoint.getThis()).takeScreenshot(this
+				.getFilePath());
 	}
 
 	/**
@@ -41,18 +45,19 @@ public class ScreenshotAspect {
 	 */
 	private String getFilePath() {
 		TestCase testCase = BaseUseCaseTest.currentTestCase;
-		String screenshotDirectory = SitePropertyUtils.getPropertyValue("site.resources.output.screenshots");
+		String screenshotDirectory = SitePropertyUtils
+				.getPropertyValue("site.resources.output.screenshots"); //$NON-NLS-1$
 		final StringBuilder sb = new StringBuilder(screenshotDirectory);
 		if (testCase != null) {
-			sb.append(testCase.id()).append("/");
+			sb.append(testCase.id()).append("/"); //$NON-NLS-1$
 			sb.append(testCase.useCase().getSimpleName());
-			sb.append("_");
+			sb.append("_"); //$NON-NLS-1$
 			sb.append(testCase.id());
-			sb.append("-");
+			sb.append("-"); //$NON-NLS-1$
 		}
-		sb.append(new SimpleDateFormat("yyyyMMdd-HHmmss_S").format(new Date()));
+		sb.append(new SimpleDateFormat("yyyyMMdd-HHmmss_S").format(new Date())); //$NON-NLS-1$
 
-		sb.append(".png");
+		sb.append(".png"); //$NON-NLS-1$
 		System.out.println(sb.toString());
 		return sb.toString();
 	}

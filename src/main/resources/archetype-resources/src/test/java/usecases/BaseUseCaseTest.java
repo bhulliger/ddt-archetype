@@ -43,7 +43,8 @@ public abstract class BaseUseCaseTest {
 
 		@Override
 		protected void starting(final Description description) {
-			BaseUseCaseTest.currentTestCase = description.getAnnotation(TestCase.class);
+			BaseUseCaseTest.currentTestCase = description
+					.getAnnotation(TestCase.class);
 			super.starting(description);
 		}
 
@@ -72,7 +73,7 @@ public abstract class BaseUseCaseTest {
 
 	@AfterClass
 	public static void updateReports() {
-		if ("on".equals(getPropertyValue("reports"))) {
+		if ("on".equals(getPropertyValue("reports"))) { //$NON-NLS-1$ //$NON-NLS-2$
 			TestResultSaver.getInstance().updateAndSaveTestReport();
 		}
 	}
@@ -95,27 +96,30 @@ public abstract class BaseUseCaseTest {
 	private static WebDriver initDriver() {
 
 		WebDriver driver = null;
-		if ("on".equals(getPropertyValue("screenshots"))) {
+		if ("on".equals(getPropertyValue("screenshots"))) { //$NON-NLS-1$//$NON-NLS-2$
 			driver = new ScreenshotDriver();
 			return driver;
 		}
 
 		// headless firefox driver
-		if (getPropertyValue("driverClass").equals("org.openqa.selenium.chrome.ChromeDriver")) {
-			final DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-			capabilities.setCapability("chrome.binary", getPropertyValue("chrome.binary"));
-			final String webdriverLocation = getPropertyValue("chrome.webdriver.binary");
+		if (getPropertyValue("driverClass").equals( //$NON-NLS-1$
+				"org.openqa.selenium.chrome.ChromeDriver")) { //$NON-NLS-1$
+			final DesiredCapabilities capabilities = DesiredCapabilities
+					.chrome();
+			capabilities.setCapability("chrome.binary", //$NON-NLS-1$
+					getPropertyValue("chrome.binary")); //$NON-NLS-1$
+			final String webdriverLocation = getPropertyValue("chrome.webdriver.binary"); //$NON-NLS-1$
 			if (webdriverLocation != null) {
-				System.setProperty("webdriver.chrome.driver", webdriverLocation);
+				System.setProperty("webdriver.chrome.driver", webdriverLocation); //$NON-NLS-1$
 			}
 			driver = new ChromeDriver(capabilities);
-		}
-		else {
+		} else {
 			try {
-				driver = (WebDriver) Class.forName(getPropertyValue("driverClass")).newInstance();
+				driver = (WebDriver) Class.forName(
+						getPropertyValue("driverClass")).newInstance(); //$NON-NLS-1$
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-			}
-			catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			} catch (ClassNotFoundException | InstantiationException
+					| IllegalAccessException e) {
 				log.error(e);
 				e.printStackTrace();
 			}

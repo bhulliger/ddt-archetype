@@ -12,8 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * Driver used to take screenshots. It wrappes a {@link FirefoxDriver} and adds a pointcut around (@see
- * {@link ScreenshotAspect}).
+ * Driver used to take screenshots. It wrappes a {@link FirefoxDriver} and adds
+ * a pointcut around (@see {@link ScreenshotAspect}).
  * 
  * @author Brigitte Hulliger, <hulliger@puzzle.ch>
  * 
@@ -33,12 +33,12 @@ public class ScreenshotDriver extends FirefoxDriver implements Screenshotable {
 	@Override
 	public void takeScreenshot(final String destinationFile) {
 		try {
-			final File scrFile = ((TakesScreenshot) this).getScreenshotAs(OutputType.FILE);
+			final File scrFile = ((TakesScreenshot) this)
+					.getScreenshotAs(OutputType.FILE);
 
 			FileUtils.copyFile(scrFile, new File(destinationFile));
-		}
-		catch (final IOException e) {
-			log.error("could not copy screenshot file.", e);
+		} catch (final IOException e) {
+			log.error("could not copy screenshot file.", e); //$NON-NLS-1$
 		}
 
 	}

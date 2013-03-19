@@ -2,8 +2,6 @@ package ${groupId}.usecases;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -54,14 +52,14 @@ public class DemoUseCaseTest extends BaseUseCaseTest {
 	 */
 	@Test
 	@TestCase(id = "TC-000-1", name = "Google Test", useCase = DemoUseCase.class)
-	public void shouldSearchOnGoogleAndReturnPuzzleWebsite() throws IOException {
+	public void shouldSearchOnGoogleAndReturnPuzzleWebsite() {
 		// GIVEN
 
 		// WHEN
-		this.useCase.searchOnGoogleAndSelectFirstResult("puzzle itc gmbh");
+		this.useCase.searchOnGoogleAndSelectFirstResult("puzzle itc gmbh"); //$NON-NLS-1$
 
 		// THEN
-		assertEquals("http://www.puzzle.ch/", getDriver().getCurrentUrl());
+		assertEquals("http://www.puzzle.ch/", getDriver().getCurrentUrl()); //$NON-NLS-1$
 	}
 
 }

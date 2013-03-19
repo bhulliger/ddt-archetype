@@ -274,18 +274,8 @@
 							<goal>java</goal>
 						</goals>
 						<configuration>
-							<mainClass>${groupId}.util.doc.generation.MenuGenerator</mainClass>
-						</configuration>
-					</execution>
-					<execution>
-						<phase>pre-site</phase>
-						<id>Generate Test Menu</id>
-						<goals>
-							<goal>java</goal>
-						</goals>
-						<configuration>
 							<classpathScope>test</classpathScope>
-							<mainClass>${groupId}.util.doc.generation.TestMenuGenerator</mainClass>
+							<mainClass>${groupId}.util.doc.generation.MenuGenerator</mainClass>
 						</configuration>
 					</execution>
 					<execution>

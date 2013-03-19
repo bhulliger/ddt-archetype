@@ -1,3 +1,3 @@
-<item name="Use Cases" href="">
+<menu name="Use Cases">
 	${USE_CASES}
-</item>
+</menu>

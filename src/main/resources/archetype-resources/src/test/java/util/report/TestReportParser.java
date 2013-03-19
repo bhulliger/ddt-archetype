@@ -28,7 +28,8 @@ public class TestReportParser {
 	 * @param testReport
 	 * @param separator
 	 */
-	static void saveTestReport(final Map<String, Map<String, TestResult>> testReport) {
+	static void saveTestReport(
+			final Map<String, Map<String, TestResult>> testReport) {
 
 		final List<String> releases = new ArrayList<>(testReport.keySet());
 		Collections.sort(releases);
@@ -65,22 +66,22 @@ public class TestReportParser {
 
 					for (int column = 1; column <= releases.size(); column++) {
 						final String release = releases.get(column - 1);
-						if (testReport.get(release).containsKey(currentTestCase)) {
-							testCaseRow[column] = testReport.get(release).get(currentTestCase).getValue();
-						}
-						else {
-							testCaseRow[column] = TestResult.NOT_AVAILABLE.getValue();
+						if (testReport.get(release)
+								.containsKey(currentTestCase)) {
+							testCaseRow[column] = testReport.get(release)
+									.get(currentTestCase).getValue();
+						} else {
+							testCaseRow[column] = TestResult.NOT_AVAILABLE
+									.getValue();
 						}
 					}
 
 					writer.writeNext(testCaseRow);
 				}
-			}
-			catch (final IOException e) {
+			} catch (final IOException e) {
 				log.error(e);
 			}
-		}
-		catch (final IOException e) {
+		} catch (final IOException e) {
 			log.error(e);
 		}
 
@@ -112,17 +113,19 @@ public class TestReportParser {
 						// parse result
 						final String[] currentRow = allRows.get(i);
 						if (currentRow.length < releases.size() + 1) {
-							System.out.println("invalid format. aborting.");
+							System.out.println("invalid format. aborting."); //$NON-NLS-1$
 							break;
 						}
 						final String testCase = currentRow[0];
 						// parse through columns
 						for (int j = 1; j < currentRow.length; j++) {
 							final String release = releases.get(j - 1);
-							final TestResult testResult = TestResult.getInstanceByValue(currentRow[j]);
+							final TestResult testResult = TestResult
+									.getInstanceByValue(currentRow[j]);
 
 							if (testReport.get(release) == null) {
-								testReport.put(release, new HashMap<String, TestResult>());
+								testReport.put(release,
+										new HashMap<String, TestResult>());
 							}
 
 							testReport.get(release).put(testCase, testResult);
@@ -132,8 +135,7 @@ public class TestReportParser {
 				reader.close();
 			}
 
-		}
-		catch (final Exception e) {
+		} catch (final Exception e) {
 			log.error(e);
 		}
 
@@ -144,7 +146,8 @@ public class TestReportParser {
 	 * @throws IOException
 	 */
 	private static File initFile() throws IOException {
-		final File file = new File(SitePropertyUtils.getPropertyValue("site.report.testreport"));
+		final File file = new File(
+				SitePropertyUtils.getPropertyValue("site.report.testreport")); //$NON-NLS-1$
 		if (!file.exists()) {
 			file.getParentFile().mkdirs();
 			file.createNewFile();

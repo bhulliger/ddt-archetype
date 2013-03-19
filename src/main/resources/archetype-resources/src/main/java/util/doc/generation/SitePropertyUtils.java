@@ -32,12 +32,12 @@ public class SitePropertyUtils {
 	private static Properties getProperties() {
 		if (properties == null) {
 			properties = new Properties();
-			try (final InputStream resourceAsStream = SitePropertyUtils.class.getResourceAsStream("/site.properties")) {
+			try (final InputStream resourceAsStream = SitePropertyUtils.class
+					.getResourceAsStream("/site.properties")) { //$NON-NLS-1$
 				properties.load(resourceAsStream);
 				resourceAsStream.close();
-			}
-			catch (IOException e) {
-				log.error("could not read property file [site.properties]", e);
+			} catch (IOException e) {
+				log.error("could not read property file [site.properties]", e); //$NON-NLS-1$
 			}
 		}
 		return properties;

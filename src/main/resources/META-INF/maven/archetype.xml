@@ -9,15 +9,20 @@
 		<source>src/main/java/pages/AbstractPage.java</source>
 		<source>src/main/java/pages/GooglePage.java</source>
 		<source>src/main/java/pages/UnknownPage.java</source>
+
 		<source>src/main/java/usecases/AbstractUseCase.java</source>
 		<source>src/main/java/usecases/DemoUseCase.java</source>
+
 		<source>src/main/java/util/doc/generation/GenerateSiteDescriptor.java
 		</source>
 		<source>src/main/java/util/doc/generation/MenuGenerator.java</source>
-		<source>src/main/java/util/doc/generation/SiteDescriptorUtils.java
+		<source>src/main/java/util/doc/generation/SiteDescriptorConstants.java
+		</source>
+		<source>src/main/java/util/doc/generation/SiteDescriptorLink.java
 		</source>
 		<source>src/main/java/util/doc/generation/SitePropertyUtils.java
 		</source>
+
 		<source>src/main/java/util/doc/Page.java</source>
 		<source>src/main/java/util/doc/TestCase.java</source>
 		<source>src/main/java/util/doc/UseCase.java</source>
@@ -26,32 +31,35 @@
 	<resources>
 		<resource>src/main/resources/site.properties</resource>
 	</resources>
-	
+
 	<siteResources>
 		<resource>src/site/apt/templates/pages.apt.template</resource>
 		<resource>src/site/apt/templates/usecase.apt.template</resource>
 		<resource>src/site/apt/templates/testcase.apt.template</resource>
 		<resource>src/site/apt/testreport.apt</resource>
 		<resource>src/site/templates/site_pages.xml.template</resource>
-		<resource>src/site/templates/site_test_cases.xml.template</resource>
 		<resource>src/site/templates/site_use_cases.xml.template</resource>
 		<resource>src/site/templates/site.xml.template</resource>
 	</siteResources>
-	
+
 	<testSources>
 		<source>src/test/java/usecases/BaseUseCaseTest.java</source>
 		<source>src/test/java/usecases/DemoUseCaseTest.java</source>
+		
 		<source>src/test/java/util/doc/ReportWatcher.java</source>
 		<source>src/test/java/util/doc/ScreencastWatcher.java</source>
 		<source>src/test/java/util/doc/ScreenshotWatcher.java</source>
-		<source>src/test/java/util/doc/generation/TestMenuGenerator.java</source>
+		
 		<source>src/test/java/util/report/TestReportParser.java</source>
 		<source>src/test/java/util/report/TestResult.java</source>
 		<source>src/test/java/util/report/TestResultSaver.java</source>
+		
 		<source>src/test/java/util/screenshots/Screenshotable.java</source>
 		<source>src/test/java/util/screenshots/ScreenshotAspect.java</source>
 		<source>src/test/java/util/screenshots/ScreenshotDriver.java</source>
-		<source>src/test/java/util/screenshots/ScreenshotWebElement.java</source>
+		<source>src/test/java/util/screenshots/ScreenshotWebElement.java
+		</source>
+		
 		<source>src/test/java/util/TestPropertyUtils.java</source>
 	</testSources>
 

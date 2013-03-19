@@ -21,7 +21,7 @@ public class GooglePage extends AbstractPage {
 	public GooglePage(final WebDriver driver) {
 		super(driver);
 
-		this.getDriver().get("http://www.google.ch");
+		this.getDriver().get("http://www.google.ch"); //$NON-NLS-1$
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class GooglePage extends AbstractPage {
 	 * @return the {@link GooglePage}
 	 */
 	public GooglePage search(final String searchArgument) {
-		final WebElement qField = this.getDriver().findElement(By.name("q"));
+		final WebElement qField = this.getDriver().findElement(By.name("q")); //$NON-NLS-1$
 		qField.sendKeys(searchArgument);
 		qField.submit();
 		return this;
@@ -46,7 +46,7 @@ public class GooglePage extends AbstractPage {
 	public GooglePage selectResult(final int index) {
 		// give google the time to find the result.
 		this.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		this.getDriver().findElement(By.xpath("//*[@id=\"rso\"]/li[" + index + "]/div/h3/a")).click();
+		this.getDriver().findElement(By.xpath("//*[@id=\"rso\"]/li[" + index + "]/div/h3/a")).click(); //$NON-NLS-1$ //$NON-NLS-2$
 		return this;
 	}
 

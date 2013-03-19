@@ -30,12 +30,12 @@ public class TestPropertyUtils {
 	private static Properties getProperties() {
 		if (properties == null) {
 			properties = new Properties();
-			try (final InputStream resourceAsStream = TestPropertyUtils.class.getResourceAsStream("/config.properties")) {
+			try (final InputStream resourceAsStream = TestPropertyUtils.class
+					.getResourceAsStream("/config.properties")) { //$NON-NLS-1$
 				properties.load(resourceAsStream);
 				resourceAsStream.close();
-			}
-			catch (IOException e) {
-				log.error("could not read property file [config.properties]", e);
+			} catch (IOException e) {
+				log.error("could not read property file [config.properties]", e); //$NON-NLS-1$
 			}
 		}
 		return properties;

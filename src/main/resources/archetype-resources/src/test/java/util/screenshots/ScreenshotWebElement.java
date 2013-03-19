@@ -51,7 +51,7 @@ public class ScreenshotWebElement implements WebElement, Screenshotable {
 
 		}
 		catch (final IOException e) {
-			log.error("could not copy file. ", e);
+			log.error("could not copy file. ", e); //$NON-NLS-1$
 		}
 	}
 
