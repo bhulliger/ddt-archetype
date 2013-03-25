@@ -2,8 +2,8 @@ package ${groupId}.usecases;
 
 import org.openqa.selenium.WebDriver;
 
-import ${groupId}.pages.GooglePage;
-import ${groupId}.util.doc.UseCase;
+import ch.puzzle.annotations.UseCase;
+import ch.puzzle.sandbox.pages.GooglePage;
 
 /**
  * @author Brigitte Hulliger, <hulliger@puzzle.ch>
@@ -39,7 +39,7 @@ import ${groupId}.util.doc.UseCase;
  * 
  * @useCaseHistory 18.02.2013 - 1.0 - initial version - Brigitte Hulliger
  */
-@UseCase(id = "UC-000", name = "Demo")
+@UseCase(id = "UC-000")
 public class DemoUseCase extends AbstractUseCase {
 
 	/**

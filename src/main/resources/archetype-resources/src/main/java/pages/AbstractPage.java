@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import ${groupId}.util.doc.Page;
-
 /**
  * Abstract superclass for each Web Page to test. All pages that can be
  * instantiated and should be documented should be annotated with the {@link Page} annotation.
@@ -71,7 +69,7 @@ public abstract class AbstractPage {
 			new Select(dropDownElement).selectByVisibleText(visibleText);
 		}
 		catch (final Exception e) {
-			log.debug("[" + visibleText + "] could not be selected in the dropdown.", e);  //$NON-NLS-1$//$NON-NLS-2$
+			log.debug("[" + visibleText + "] could not be selected in the dropdown.", e);
 		}
 	}
 
@@ -89,7 +87,7 @@ public abstract class AbstractPage {
 			new Select(dropDownElement).selectByIndex(index);
 		}
 		catch (final Exception e) {
-			log.debug("[index " + index + "] could not be selected in the dropdown.", e); //$NON-NLS-1$ //$NON-NLS-2$
+			log.debug("[index " + index + "] could not be selected in the dropdown.", e);
 		}
 	}
 
@@ -107,7 +105,7 @@ public abstract class AbstractPage {
 			new Select(dropDownElement).selectByValue(value);
 		}
 		catch (final Exception e) {
-			log.debug("[value " + value + "] could not be selected in the dropdown.", e); //$NON-NLS-1$ //$NON-NLS-2$
+			log.debug("[value " + value + "] could not be selected in the dropdown.", e);
 		}
 	}
 

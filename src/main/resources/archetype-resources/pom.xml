@@ -7,8 +7,6 @@
 	<version>${version}</version>
 	<packaging>jar</packaging>
 
-	<url>http://maven.apache.org</url>
-
 	<properties>
 		<version.java>1.7</version.java>
 		<version.selenium>2.30.0</version.selenium>
@@ -20,11 +18,15 @@
 		<version.opencsv>2.3</version.opencsv>
 		<version.loremipsum>1.0</version.loremipsum>
 		<version.reflections>0.9.8</version.reflections>
-		<version.xerces>2.11.0</version.xerces>
-		<version.aspectj>1.7.2</version.aspectj>
+
+		<version.at-doclet>0.0.1-SNAPSHOT</version.at-doclet>
+		<version.xerces>2.4.0</version.xerces>
+
+		<aspectj.version>1.7.2</aspectj.version>
 
 		<version.maven-compiler-plugin>3.0</version.maven-compiler-plugin>
 		<version.maven-assembly-plugin>2.2.1</version.maven-assembly-plugin>
+		<version.aspectj-maven-plugin>1.4</version.aspectj-maven-plugin>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -38,21 +40,13 @@
 			<artifactId>log4j</artifactId>
 			<version>${version.log4j}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${version.selenium}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>${version.selenium}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>${version.selenium}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -63,16 +57,7 @@
 			<artifactId>hamcrest-all</artifactId>
 			<version>${version.hamcrest}</version>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.opencsv</groupId>
-			<artifactId>opencsv</artifactId>
-			<version>${version.opencsv}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.sven-jacobs</groupId>
-			<artifactId>loremipsum</artifactId>
-			<version>${version.loremipsum}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections-maven</artifactId>
@@ -87,31 +72,27 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.monte</groupId>
-			<artifactId>screenrecorder</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${version.aspectj}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjtools</artifactId>
-			<version>${version.aspectj}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
 			<version>${version.xerces}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${version.opencsv}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>ch.puzzle</groupId>
+			<artifactId>at-doclet</artifactId>
+			<version>${version.at-doclet}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
+
+		<!-- define test resource package (test properties and config) -->
 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
@@ -120,6 +101,8 @@
 				</excludes>
 			</testResource>
 		</testResources>
+
+		<!-- define resource package for config files (site descriptor) -->
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -129,7 +112,10 @@
 			</resource>
 		</resources>
 
+
 		<plugins>
+
+			<!-- define compiler to use -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -140,6 +126,38 @@
 				</configuration>
 			</plugin>
 
+			<!-- execution for generating the menu of the site descriptor -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<phase>pre-site</phase>
+						<id>Generate Menu</id>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<classpathScope>test</classpathScope>
+							<mainClass>${groupId}.util.doc.generation.MenuGenerator</mainClass>
+						</configuration>
+					</execution>
+					<execution>
+						<phase>pre-site</phase>
+						<id>Generate Site Descriptor</id>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>${groupId}.util.doc.generation.GenerateSiteDescriptor</mainClass>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
+
+			<!-- cleanup generated files from javadoc plugin -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.5</version>
@@ -170,123 +188,61 @@
 				</configuration>
 			</plugin>
 
+			<!-- for headless test running -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>selenium-maven-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<id>xvfb</id>
+						<phase>pre-test</phase>
+						<goals>
+							<goal>xvfb</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>selenium</id>
+						<phase>pre-test</phase>
+						<goals>
+							<goal>start-server</goal>
+						</goals>
+						<configuration>
+							<background>true</background>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.9</version>
+
 				<executions>
 					<execution>
+						<id>at-doclet</id>
 						<phase>pre-site</phase>
 						<goals>
 							<goal>javadoc</goal>
 							<goal>test-javadoc</goal>
 						</goals>
-					</execution>
-				</executions>
-
-				<configuration>
-					<doclet>ch.puzzle.util.AnnotationDrivenDoclet</doclet>
-					<docletArtifact>
-						<groupId>ch.puzzle</groupId>
-						<artifactId>at-doclet</artifactId>
-						<version>1.0</version>
-					</docletArtifact>
-
-					<additionalparam>
-						-output \${basedir}/${at-doclet.apt.generated}
-						-annotation
-						${groupId}.util.doc.UseCase
-						\${basedir}/src/site/apt/templates/usecase.apt.template
-						-annotation
-						${groupId}.util.doc.Page
-						\${basedir}/src/site/apt/templates/pages.apt.template
-						-annotation
-						${groupId}.util.doc.TestCase
-						\${basedir}/src/site/apt/templates/testcase.apt.template
-						-siteResources \${basedir}/src/site/resources/
-					</additionalparam>
-
-					<useStandardDocletOptions>false</useStandardDocletOptions>
-
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.4</version>
-				<configuration>
-					<showWeaveInfo>true</showWeaveInfo>
-					<source>${version.java}</source>
-					<target>${version.java}</target>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>test-compile</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjrt</artifactId>
-						<version>${version.aspectj}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjtools</artifactId>
-						<version>${version.aspectj}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-
-			<plugin>
-				<groupId>org.reflections</groupId>
-				<artifactId>reflections-maven</artifactId>
-				<version>0.9.8</version>
-				<goals>
-					<goal>test-compile</goal>
-					<goal>compile</goal>
-				</goals>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>
-					maven-project-info-reports-plugin
-				</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<dependencyLocationEnabled>false</dependencyLocationEnabled>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<phase>pre-site</phase>
-						<id>Generate Menu</id>
-						<goals>
-							<goal>java</goal>
-						</goals>
 						<configuration>
-							<classpathScope>test</classpathScope>
-							<mainClass>${groupId}.util.doc.generation.MenuGenerator</mainClass>
-						</configuration>
-					</execution>
-					<execution>
-						<phase>pre-site</phase>
-						<id>Generate Site Descriptor</id>
-						<goals>
-							<goal>java</goal>
-						</goals>
-						<configuration>
-							<mainClass>
-								${groupId}.util.doc.generation.GenerateSiteDescriptor</mainClass>
+							<goal>pre-site</goal>
+							<doclet>ch.puzzle.doclet.AnnotationDrivenDoclet</doclet>
+							<docletArtifact>
+								<groupId>ch.puzzle</groupId>
+								<artifactId>at-doclet</artifactId>
+								<version>${version.at-doclet}</version>
+							</docletArtifact>
+
+							<additionalparam>
+								-output \${basedir}/\${at-doclet.apt.generated}
+								-siteResources \${basedir}/src/site/resources/
+							</additionalparam>
+							<useStandardDocletOptions>false</useStandardDocletOptions>
+
 						</configuration>
 					</execution>
 				</executions>
@@ -315,15 +271,63 @@
 											<goal>compile</goal>
 										</goals>
 									</pluginExecutionFilter>
-									<action>
-										<execute />
-									</action>
 								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+
+
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<reporting>
+		<plugins>
+
+			<!-- generating the javadoc with the custom defined doclet. where the 
+				magic happens... -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+
+				<reportSets>
+					<!-- default javadoc documentation for sources and test sources -->
+					<reportSet>
+						<id>default javadoc</id>
+						<reports>
+							<report>javadoc</report>
+							<report>test-javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+
+			</plugin>
+
+			<!-- generating the test result output -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.14</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report-only</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+		</plugins>
+	</reporting>
+
+	<repositories>
+		<repository>
+			<id>puzzle.public</id>
+			<name>puzzle</name>
+			<url>https://maven.puzzle.ch/public</url>
+		</repository>
+	</repositories>
+
 </project>

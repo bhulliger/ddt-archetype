@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import ${groupId}.util.doc.TestCase;
+import ch.puzzle.annotations.TestCase;
 
 /**
  * @author Brigitte Hulliger, <hulliger@puzzle.ch>
@@ -51,7 +51,7 @@ public class DemoUseCaseTest extends BaseUseCaseTest {
 	 * @testCaseHistory 05.03.2013 - 1.0 - initial Version - Brigitte Hulliger
 	 */
 	@Test
-	@TestCase(id = "TC-000-1", name = "Google Test", useCase = DemoUseCase.class)
+	@TestCase(id = "TC-000-1", useCase = DemoUseCase.class)
 	public void shouldSearchOnGoogleAndReturnPuzzleWebsite() {
 		// GIVEN
 

@@ -2,6 +2,8 @@ package ${groupId}.util.doc.generation;
 
 import static ${groupId}.util.doc.generation.SiteDescriptorConstants.SITE_XML_SNIPPETS;
 
+import static ch.puzzle.util.DocletPropertyUtils.getPropertyValue;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,8 +13,6 @@ import java.io.PrintWriter;
 import java.util.Map.Entry;
 
 import org.apache.commons.io.FileUtils;
-
-import ${groupId}.util.doc.generation.SitePropertyUtils;
 
 /**
  * Generator for the site.xml file. This main class gets executed in the
@@ -34,9 +34,9 @@ public class GenerateSiteDescriptor {
 	 */
 	public static void main(final String[] args) throws IOException {
 		try (final BufferedReader reader = new BufferedReader(new FileReader(
-				SitePropertyUtils.getPropertyValue("site.descriptor.template"))); //$NON-NLS-1$
+				getPropertyValue("site.descriptor.template"))); 
 				final PrintWriter writer = new PrintWriter(new FileWriter(
-						"src/site/site.xml"))) { //$NON-NLS-1$
+						"src/site/site.xml"))) { 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				boolean replacement = false;

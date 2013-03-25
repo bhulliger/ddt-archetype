@@ -27,9 +27,10 @@ import java.util.Set;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 
-import ${groupId}.util.doc.Page;
-import ${groupId}.util.doc.TestCase;
-import ${groupId}.util.doc.UseCase;
+import ch.puzzle.annotations.Page;
+import ch.puzzle.annotations.TestCase;
+import ch.puzzle.annotations.UseCase;
+import ch.puzzle.doc.SiteDescriptorLink;
 
 /**
  * Generator for the site.xml file. This main class gets executed in the
@@ -53,7 +54,7 @@ public class MenuGenerator {
 	 */
 	public static void main(final String[] args) throws FileNotFoundException,
 			IOException {
-		final Reflections sources = new Reflections("${groupId}"); //$NON-NLS-1$
+		final Reflections sources = new Reflections("${groupId}");
 
 		Set<SiteDescriptorLink> menuLinks = new HashSet<>();
 
@@ -61,7 +62,7 @@ public class MenuGenerator {
 				sources.getTypesAnnotatedWith(UseCase.class));
 		Collections.sort(useCaseClasses, CLASSNAME_COMPARATOR);
 
-		Set<Method> testCaseMethods = new Reflections("${groupId}", //$NON-NLS-1$
+		Set<Method> testCaseMethods = new Reflections("${groupId}",
 				new MethodAnnotationsScanner())
 				.getMethodsAnnotatedWith(TestCase.class);
 
@@ -89,7 +90,7 @@ public class MenuGenerator {
 
 			final UseCase usecase = usecaseClass.getAnnotation(UseCase.class);
 			menuLinks.add(new SiteDescriptorLink(usecaseClass, usecase.id(),
-					usecase.id() + ":" + usecase.name(), subLinks)); //$NON-NLS-1$
+					usecase.id(), subLinks));
 
 		}
 
@@ -105,7 +106,7 @@ public class MenuGenerator {
 			final Page page = pageClass.getAnnotation(Page.class);
 
 			pagesLinks.add(new SiteDescriptorLink(pageClass, page.id(), page
-					.id() + " / " + page.name())); //$NON-NLS-1$
+					.id()));
 		}
 
 		generateMenuSnippet(PAGES_PLACEHOLDER, pagesLinks);

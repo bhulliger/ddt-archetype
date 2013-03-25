@@ -4,7 +4,7 @@
 
 	<groupId>ch.puzzle.maven.archetypes</groupId>
 	<artifactId>ddt-archetype</artifactId>
-	<version>1.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Documentation Driven Web Testing</name>

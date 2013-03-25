@@ -18,18 +18,10 @@
 		<source>src/main/java/util/doc/generation/MenuGenerator.java</source>
 		<source>src/main/java/util/doc/generation/SiteDescriptorConstants.java
 		</source>
-		<source>src/main/java/util/doc/generation/SiteDescriptorLink.java
-		</source>
-		<source>src/main/java/util/doc/generation/SitePropertyUtils.java
-		</source>
-
-		<source>src/main/java/util/doc/Page.java</source>
-		<source>src/main/java/util/doc/TestCase.java</source>
-		<source>src/main/java/util/doc/UseCase.java</source>
 	</sources>
 
 	<resources>
-		<resource>src/main/resources/site.properties</resource>
+		<resource>src/main/resources/doclet.properties</resource>
 	</resources>
 
 	<siteResources>
@@ -45,26 +37,10 @@
 	<testSources>
 		<source>src/test/java/usecases/BaseUseCaseTest.java</source>
 		<source>src/test/java/usecases/DemoUseCaseTest.java</source>
-		
-		<source>src/test/java/util/doc/ReportWatcher.java</source>
-		<source>src/test/java/util/doc/ScreencastWatcher.java</source>
-		<source>src/test/java/util/doc/ScreenshotWatcher.java</source>
-		
-		<source>src/test/java/util/report/TestReportParser.java</source>
-		<source>src/test/java/util/report/TestResult.java</source>
-		<source>src/test/java/util/report/TestResultSaver.java</source>
-		
-		<source>src/test/java/util/screenshots/Screenshotable.java</source>
-		<source>src/test/java/util/screenshots/ScreenshotAspect.java</source>
-		<source>src/test/java/util/screenshots/ScreenshotDriver.java</source>
-		<source>src/test/java/util/screenshots/ScreenshotWebElement.java
-		</source>
-		
-		<source>src/test/java/util/TestPropertyUtils.java</source>
 	</testSources>
 
 	<testResources>
-		<resource>src/test/resources/config.properties</resource>
+		<resource>src/test/resources/selenium.properties</resource>
 		<resource>src/test/resources/log4j.properties</resource>
 	</testResources>
 </archetype>
