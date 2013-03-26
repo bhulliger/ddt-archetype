@@ -1,4 +1,4 @@
-package ${groupId}.pages;
+package ${package}.pages;
 
 import org.openqa.selenium.WebDriver;
 

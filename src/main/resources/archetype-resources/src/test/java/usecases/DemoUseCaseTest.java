@@ -1,4 +1,4 @@
-package ${groupId}.usecases;
+package ${package}.usecases;
 
 import static org.junit.Assert.assertEquals;
 

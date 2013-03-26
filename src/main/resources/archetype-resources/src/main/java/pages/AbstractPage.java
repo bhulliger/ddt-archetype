@@ -1,4 +1,4 @@
-package ${groupId}.pages;
+package ${package}.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;

@@ -1,6 +1,6 @@
-package ${groupId}.util.doc.generation;
+package ${package}.util.doc.generation;
 
-import static ${groupId}.util.doc.generation.SiteDescriptorConstants.SITE_XML_SNIPPETS;
+import static ${package}.util.doc.generation.SiteDescriptorConstants.SITE_XML_SNIPPETS;
 
 import static ch.puzzle.util.DocletPropertyUtils.getPropertyValue;
 

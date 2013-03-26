@@ -22,7 +22,8 @@
 		<version.at-doclet>0.0.1-SNAPSHOT</version.at-doclet>
 		<version.xerces>2.4.0</version.xerces>
 
-		<aspectj.version>1.7.2</aspectj.version>
+		<version.aspectj>1.7.2</version.aspectj>
+		<version.aspectj-tools>1.7.2</version.aspectj-tools>
 
 		<version.maven-compiler-plugin>3.0</version.maven-compiler-plugin>
 		<version.maven-assembly-plugin>2.2.1</version.maven-assembly-plugin>
@@ -78,15 +79,33 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>ch.puzzle</groupId>
+			<artifactId>at-doclet</artifactId>
+			<version>${version.at-doclet}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${version.aspectj}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>${version.aspectj-tools}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>net.sf.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>${version.opencsv}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>ch.puzzle</groupId>
-			<artifactId>at-doclet</artifactId>
-			<version>${version.at-doclet}</version>
+			<groupId>org.monte</groupId>
+			<artifactId>monte</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 
@@ -238,7 +257,10 @@
 							</docletArtifact>
 
 							<additionalparam>
-								-output \${basedir}/\${at-doclet.apt.generated}
+								-output \${basedir}/${at-doclet.apt.generated}
+								-annotation ch.puzzle.annotations.Page \${basedir}/src/site/apt/templates/pages.apt.template
+								-annotation ch.puzzle.annotations.UseCase \${basedir}/src/site/apt/templates/usecase.apt.template
+								-annotation ch.puzzle.annotations.TestCase \${basedir}/src/site/apt/templates/testcase.apt.template
 								-siteResources \${basedir}/src/site/resources/
 							</additionalparam>
 							<useStandardDocletOptions>false</useStandardDocletOptions>

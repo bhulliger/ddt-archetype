@@ -1,9 +1,10 @@
-package ${groupId}.usecases;
+package ${package}.usecases;
 
 import org.openqa.selenium.WebDriver;
 
+import ${package}.pages.GooglePage;
+
 import ch.puzzle.annotations.UseCase;
-import ch.puzzle.sandbox.pages.GooglePage;
 
 /**
  * @author Brigitte Hulliger, <hulliger@puzzle.ch>

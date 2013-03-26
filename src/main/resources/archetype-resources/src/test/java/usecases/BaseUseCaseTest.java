@@ -1,4 +1,4 @@
-package ${groupId}.usecases;
+package ${package}.usecases;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

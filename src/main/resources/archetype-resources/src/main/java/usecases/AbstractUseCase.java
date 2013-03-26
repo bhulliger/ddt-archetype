@@ -1,4 +1,4 @@
-package ${groupId}.usecases;
+package ${package}.usecases;
 
 import org.openqa.selenium.WebDriver;
 

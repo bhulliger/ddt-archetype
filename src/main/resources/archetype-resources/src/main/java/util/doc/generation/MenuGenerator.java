@@ -1,12 +1,12 @@
 /**
  * 
  */
-package ${groupId}.util.doc.generation;
+package ${package}.util.doc.generation;
 
-import static ${groupId}.util.doc.generation.SiteDescriptorConstants.PAGES_PLACEHOLDER;
-import static ${groupId}.util.doc.generation.SiteDescriptorConstants.SITE_XML_SNIPPETS;
-import static ${groupId}.util.doc.generation.SiteDescriptorConstants.SITE_XML_TEMPLATES;
-import static ${groupId}.util.doc.generation.SiteDescriptorConstants.USE_CASES_PLACEHOLDER;
+import static ${package}.util.doc.generation.SiteDescriptorConstants.PAGES_PLACEHOLDER;
+import static ${package}.util.doc.generation.SiteDescriptorConstants.SITE_XML_SNIPPETS;
+import static ${package}.util.doc.generation.SiteDescriptorConstants.SITE_XML_TEMPLATES;
+import static ${package}.util.doc.generation.SiteDescriptorConstants.USE_CASES_PLACEHOLDER;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -54,7 +54,7 @@ public class MenuGenerator {
 	 */
 	public static void main(final String[] args) throws FileNotFoundException,
 			IOException {
-		final Reflections sources = new Reflections("${groupId}");
+		final Reflections sources = new Reflections("${package}");
 
 		Set<SiteDescriptorLink> menuLinks = new HashSet<>();
 
@@ -62,7 +62,7 @@ public class MenuGenerator {
 				sources.getTypesAnnotatedWith(UseCase.class));
 		Collections.sort(useCaseClasses, CLASSNAME_COMPARATOR);
 
-		Set<Method> testCaseMethods = new Reflections("${groupId}",
+		Set<Method> testCaseMethods = new Reflections("${package}",
 				new MethodAnnotationsScanner())
 				.getMethodsAnnotatedWith(TestCase.class);
 

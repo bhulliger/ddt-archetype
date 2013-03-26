@@ -1,4 +1,4 @@
-package ${groupId}.util.doc.generation;
+package ${package}.util.doc.generation;
 
 import static ch.puzzle.util.DocletPropertyUtils.getPropertyValue;
 
